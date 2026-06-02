@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe Interaktif - Muthia Andini (10123345)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Standarisasi Skema Kasaran (Low-Fidelity Blueprint) */
+        body {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        /* Tekstur Kotak Silang Identifikasi Gambar/Ikon */
+        .wireframe-placeholder {
+            border: 2px solid #000000;
+            background: linear-gradient(to top right, transparent calc(50% - 1px), #000000 calc(50% - 1px), #000000 calc(50% + 1px), transparent calc(50% + 1px)),
+                        linear-gradient(to bottom right, transparent calc(50% - 1px), #000000 calc(50% - 1px), #000000 calc(50% + 1px), transparent calc(50% + 1px));
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body id="mainApp" class="font-mono text-sm antialiased transition-all duration-200">
+
+    <div class="flex h-screen overflow-hidden">
+
+        <aside class="w-64 bg-white border-r-4 border-black flex flex-col justify-between p-4 z-30 shadow-[4px_0_0_0_rgba(0,0,0,1)]">
+            <div>
+                <div class="flex items-center space-x-3 pb-4 mb-6 border-b-2 border-black">
+                    <div class="w-10 h-10 wireframe-placeholder flex items-center justify-center font-bold text-xs">LOGO</div>
+                    <div>
+                        <h1 class="font-bold text-sm tracking-tight">MY ACADEMIC</h1>
+                        <p class="text-[10px] uppercase font-bold text-gray-500">UNIKOM [LOW-FI]</p>
+                    </div>
+                </div>
+                
+                <nav class="space-y-2">
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 px-2">[ MENU UTAMA ]</p>
+                    
+                    <button onclick="switchTab('dashboard')" id="nav-dashboard" class="w-full text-left flex items-center space-x-3 px-3 py-2 border-2 border-black bg-gray-200 font-bold transition-all">
+                        <span class="w-4 h-4 border border-black inline-block bg-white text-center text-[9px] leading-3">■</span>
+                        <span>DASHBOARD BERANDA</span>
+                    </button>
+                    
+                    <button onclick="switchTab('krs')" id="nav-krs" class="w-full text-left flex items-center space-x-3 px-3 py-2 border-2 border-transparent hover:border-black font-bold text-gray-600 hover:text-black transition-all">
+                        <span class="w-4 h-4 border border-black inline-block bg-white text-center text-[9px] leading-3">▤</span>
+                        <span>PENGISIAN KRS (WIZARD)</span>
+                    </button>
+                    
+                    <button onclick="alert('Fitur Hasil Studi (KHS) dinonaktifkan sementara pada draf kasaran ini.')" class="w-full text-left flex items-center space-x-3 px-3 py-2 text-gray-300 font-bold cursor-not-allowed">
+                        <span class="w-4 h-4 border border-gray-200 inline-block bg-white text-center text-[9px] text-gray-200">🛇</span>
+                        <span>HASIL STUDI (KHS)</span>
+                    </button>
+
+                    <button onclick="alert('Fitur Layanan Kampus dinonaktifkan sementara pada draf kasaran ini.')" class="w-full text-left flex items-center space-x-3 px-3 py-2 text-gray-300 font-bold cursor-not-allowed">
+                        <span class="w-4 h-4 border border-gray-200 inline-block bg-white text-center text-[9px] text-gray-200">🛇</span>
+                        <span>LAYANAN MAHASISWA</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="p-3 border-t-2 border-black bg-gray-50 text-[11px]">
+                <p class="text-gray-500 font-bold">DESIGNER WIREFRAME:</p>
+                <p class="font-black text-black uppercase">MUTHIA ANDINI</p>
+                <p class="font-bold text-gray-700">NIM: 10123345</p>
+                <p class="text-[9px] text-gray-400 mt-1">KELAS: INFORMATIKA 9</p>
+            </div>
+        </aside>
+
+        <div class="flex-1 flex flex-col overflow-y-auto">
+            
+            <header class="bg-white border-b-4 border-black sticky top-0 z-20 px-6 py-4 flex flex-wrap justify-between items-center gap-4">
+                <div class="relative w-full sm:w-72">
+                    <input type="text" id="topSearchInput" onkeyup="handleTopSearch()" placeholder="[🔍] Cari menu cepat (misal: krs)..." class="w-full pl-3 pr-3 py-1.5 bg-white border-2 border-black font-bold text-xs focus:bg-gray-50 outline-none">
+                </div>
+
+                <div class="flex items-center space-x-4 text-xs">
+                    <div class="border-2 border-black p-1 bg-gray-50 flex items-center space-x-1">
+                        <span class="font-bold px-1">[UKURAN TEKS]:</span>
+                        <button onclick="changeFontSize('text-xs')" class="border border-black px-1.5 bg-white font-bold hover:bg-gray-200">A</button>
+                        <button onclick="changeFontSize('text-sm')" class="border border-black px-1.5 bg-gray-300 font-bold hover:bg-gray-200">A+</button>
+                        <button onclick="changeFontSize('text-base')" class="border border-black px-1.5 bg-white font-bold hover:bg-gray-200">A++</button>
+                    </div>
+
+                    <button onclick="openAiWidget()" class="bg-black hover:bg-gray-800 text-white font-bold px-3 py-1.5 border-2 border-black flex items-center space-x-2 shadow-[2px_2px_0_0_rgba(0,0,0,1)]">
+                        <span class="w-2.5 h-2.5 bg-white inline-block rounded-full animate-ping"></span>
+                        <span>[🤖] ASISTEN AI</span>
+                    </button>
+                </div>
+            </header>
+
+            <main class="p-6 max-w-5xl w-full mx-auto flex-1">
+
+                <div id="alertBox" class="mb-6 bg-gray-50 border-4 border-dashed border-black p-4 flex flex-wrap justify-between items-center gap-2 text-xs">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-6 h-6 wireframe-placeholder flex items-center justify-center font-bold">!</div>
+                        <div>
+                            <span class="font-bold">[PEMBERITAHUAN MENDESAK]:</span> Batas Waktu Pengisian KRS Online Tersisa <span class="font-bold underline text-red-600">3 Hari Lagi</span>.
+                        </div>
+                    </div>
+                    <button onclick="switchTab('krs')" class="bg-black text-white font-bold px-3 py-1 text-xs border border-black hover:bg-gray-800">BUKA FORM KRS NOW</button>
+                </div>
+
+                <div id="tab-dashboard" class="space-y-6">
+                    <div class="bg-white border-4 border-black p-5 flex flex-wrap justify-between items-center gap-4">
+                        <div>
+                            <span class="border border-black px-2 py-0.5 bg-gray-200 text-[10px] font-bold">[ PROFIL MAHASISWA AKTIF ]</span>
+                            <h2 class="text-lg font-bold mt-2">MUTHIA ANDINI</h2>
+                            <p class="text-xs text-gray-600 font-bold mt-0.5">NIM: 10123345 | PRODI: TEKNIK INFORMATIKA | KELAS: INFORMATIKA 9</p>
+                        </div>
+                        <div class="border-2 border-black p-3 bg-gray-50 text-right text-xs">
+                            <p class="text-gray-500 font-bold">DOSEN WALI:</p>
+                            <p class="font-bold">Ir. Teuku Muda, M.T.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        
+                        <div class="border-4 border-black p-4 bg-white flex flex-col justify-between shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+                            <div>
+                                <h3 class="font-bold text-xs border-b-2 border-black pb-1 mb-3">[📊 METRIK AKADEMIK]</h3>
+                                <div class="grid grid-cols-2 gap-2 text-center">
+                                    <div class="border-2 border-black p-2 bg-gray-50">
+                                        <p class="text-[9px] text-gray-500 font-bold">IPK AKTIF</p>
+                                        <p class="text-xl font-bold mt-1">3.85</p>
+                                    </div>
+                                    <div class="border-2 border-black p-2 bg-gray-50">
+                                        <p class="text-[9px] text-gray-500 font-bold">SKS AMBIL</p>
+                                        <p id="dashSksLabel" class="text-xl font-bold mt-1">0 / 24</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="switchTab('krs')" class="w-full text-center text-xs font-bold py-1.5 bg-gray-200 hover:bg-gray-300 border-2 border-black mt-4">PENGISIAN KRS</button>
+                        </div>
+
+                        <div class="border-4 border-black p-4 bg-white shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+                            <h3 class="font-bold text-xs border-b-2 border-black pb-1 mb-3">[📅 JADWAL KULIAH HARI INI]</h3>
+                            <div class="space-y-2 text-[11px]">
+                                <div class="p-2 border border-black bg-gray-50">
+                                    <p class="font-bold">Desain Interaksi Perangkat Lunak</p>
+                                    <p class="text-gray-500">08:00 - 10:30 | RUANG: R.402 [TEORI]</p>
+                                </div>
+                                <div class="p-2 border border-black bg-gray-50">
+                                    <p class="font-bold">Pemrograman Web Komponen</p>
+                                    <p class="text-gray-500">11:00 - 13:30 | RUANG: LAB 3 [PRAKTIK]</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-4 border-black p-4 bg-white shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+                            <h3 class="font-bold text-xs border-b-2 border-black pb-1 mb-3">[📌 DEADLINE PENTING]</h3>
+                            <div class="space-y-2 text-[11px]">
+                                <div class="p-2 bg-gray-100 border-2 border-black font-bold text-red-600">
+                                    <p>TUGAS UTS DIPL (.PDF)</p>
+                                    <p class="text-black text-[10px] mt-0.5">DEADLINE: MALAM INI 23:59 WIB</p>
+                                </div>
+                                <div class="p-2 border border-black text-gray-400">
+                                    <p class="font-medium">Evaluasi Kuesioner Dosen</p>
+                                    <p class="text-[10px]">BATAS: 4 JUNI 2026</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="tab-krs" class="hidden border-4 border-black p-6 bg-white space-y-6 shadow-[6px_6px_0_0_rgba(0,0,0,1)]">
+                    <div class="border-b-2 border-black pb-3 flex justify-between items-start flex-wrap gap-2">
+                        <div>
+                            <h3 class="font-bold text-base">[ FORM PENGISIAN KRS ELEKTRONIK ]</h3>
+                            <p class="text-xs text-gray-500 font-bold mt-0.5">Metode pemilihan kelas berbasis wizard otomatis menghindari konflik jadwal.</p>
+                        </div>
+                        <input type="text" id="krsSearchField" onkeyup="filterKrsItems()" placeholder="Saring nama matakuliah..." class="px-2 py-1 border border-black text-xs">
+                    </div>
+
+                    <div class="flex items-center justify-center space-x-2 text-xs font-bold max-w-sm mx-auto mb-4">
+                        <div class="text-gray-400 border border-gray-300 px-1.5 py-0.5 bg-gray-50">1. SYARAT</div>
+                        <div class="w-6 h-0.5 bg-gray-300"></div>
+                        <div class="border-2 border-black bg-gray-200 px-2 py-0.5">2. PILIH MATKUL</div>
+                        <div class="w-6 h-0.5 bg-gray-300"></div>
+                        <div class="text-gray-400 border border-gray-300 px-1.5 py-0.5 bg-gray-50">3. FINISH</div>
+                    </div>
+
+                    <div class="bg-gray-100 border-2 border-black p-3.5 text-xs">
+                        <p class="font-bold">[🤖 REKOMENDASI PAKET AI]:</p>
+                        <p class="mt-1 text-gray-700">Berdasarkan pencapaian IPK Anda (3.85), Anda berhak mengambil batas paket penuh 24 SKS. Klik tombol di bawah ini untuk mencentang otomatis kelas rekomendasi non-bentrok.</p>
+                        <button onclick="autoSelectKrs()" class="mt-2 text-[11px] bg-black text-white font-bold px-2 py-1 hover:bg-gray-800">AMBIL SEMUA PAKET REKOMENDASI</button>
+                    </div>
+
+                    <div class="space-y-2" id="krsItemsContainer">
+                        <label class="krs-item flex items-start p-3 border-2 border-black bg-white cursor-pointer text-xs select-none hover:bg-gray-50">
+                            <input type="checkbox" data-sks="3" onchange="calculateSks()" class="krs-checkbox mt-0.5 mr-3 h-4 w-4 accent-black">
+                            <div>
+                                <p class="matkul-title font-bold">IF23401 Desain Interaksi Perangkat Lunak (3 SKS)</p>
+                                <p class="text-gray-500 text-[10px]">HARI: SELASA, 08:00 - 10:30 | DOSEN: SQUALL LEONHART | INFORMATIKA 9</p>
+                            </div>
+                        </label>
+                        
+                        <label class="krs-item flex items-start p-3 border-2 border-black bg-white cursor-pointer text-xs select-none hover:bg-gray-50">
+                            <input type="checkbox" data-sks="3" onchange="calculateSks()" class="krs-checkbox mt-0.5 mr-3 h-4 w-4 accent-black">
+                            <div>
+                                <p class="matkul-title font-bold">IF23402 Arsitektur Perangkat Lunak (3 SKS)</p>
+                                <p class="text-gray-500 text-[10px]">HARI: RABU, 13:30 - 16:00 | DOSEN: RINOA HEARTILLY | INFORMATIKA 9</p>
+                            </div>
+                        </label>
+                        
+                        <label class="krs-item flex items-start p-3 border-2 border-black bg-white cursor-pointer text-xs select-none hover:bg-gray-50">
+                            <input type="checkbox" data-sks="4" onchange="calculateSks()" class="krs-checkbox mt-0.5 mr-3 h-4 w-4 accent-black">
+                            <div>
+                                <p class="matkul-title font-bold">IF23403 Algoritma Cerdas / Artificial Intelligence (4 SKS)</p>
+                                <p class="text-gray-500 text-[10px]">HARI: KAMIS, 08:00 - 11:20 | DOSEN: CLOUD STRIFE | INFORMATIKA 9 <span class="font-bold underline text-red-600">[KUOTA TERSISA: 3]</span></p>
+                            </div>
+                        </label>
+
+                        <label class="krs-item flex items-start p-3 border-2 border-black bg-white cursor-pointer text-xs select-none hover:bg-gray-50">
+                            <input type="checkbox" data-sks="2" onchange="calculateSks()" class="krs-checkbox mt-0.5 mr-3 h-4 w-4 accent-black">
+                            <div>
+                                <p class="matkul-title font-bold">IF23404 Etika Profesi Teknologi Informasi (2 SKS)</p>
+                                <p class="text-gray-500 text-[10px]">HARI: JUMAT, 09:00 - 10:40 | DOSEN: AERITH GAINSBOROUGH | INFORMATIKA 9</p>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="border-t-2 border-black pt-4 flex flex-wrap justify-between items-center text-xs font-bold gap-2">
+                        <span>TOTAL BEBAN TERPILIH: <span id="currentSksLabel" class="text-sm underline">0</span> / 24 SKS</span>
+                        <div class="space-x-2">
+                            <button onclick="resetKrsSelection()" class="px-3 py-1 border-2 border-black bg-gray-100 hover:bg-gray-200">[RESET SELEKSI]</button>
+                            <button onclick="submitKrsForm()" class="px-4 py-1 bg-black text-white border-2 border-black hover:bg-gray-800 shadow-[2px_2px_0_0_rgba(0,0,0,1)]">[SIMPAN & AJUKAN KRS]</button>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+
+            <footer class="bg-white border-t-2 border-black py-4 text-center text-[10px] text-gray-500 font-bold mt-auto">
+                <p>PROTOTIPE WIREFRAME KASARAN INTERAKTIF (LOW-FI) • UTS DESAIN INTERAKSI PERANGKAT LUNAK</p>
+                <p class="mt-0.5">RANCANGAN DAN CODING DIKERJAKAN OLEH: <strong>MUTHIA ANDINI (10123345)</strong> - KELAS INFORMATIKA 9</p>
+            </footer>
+        </div>
+
+
+        <div id="aiWidget" class="hidden fixed bottom-6 right-6 w-80 md:w-96 bg-white border-4 border-black z-50 flex flex-col shadow-[6px_6px_0_0_rgba(0,0,0,1)]">
+            <div class="bg-black text-white p-3 flex justify-between items-center font-bold text-xs">
+                <div class="flex items-center space-x-2">
+                    <span class="w-2.5 h-2.5 bg-white inline-block rounded-full"></span>
+                    <span>[🤖] ASISTEN AKADEMIK AI</span>
+                </div>
+                <button onclick="closeAiWidget()" class="text-white hover:text-gray-300 font-bold px-1.5 border border-white text-[10px]">✕ CLOSE</button>
+            </div>
+
+            <div id="chatBox" class="p-3 h-52 overflow-y-auto bg-gray-50 text-[11px] space-y-2 font-bold flex flex-col">
+                <div class="bg-white border border-black p-2 max-w-[85%] self-start">
+                    Halo MUTHIA ANDINI, ada kendala operasional perihal pengisian KRS, bentrok jadwal, atau verifikasi dosen perwalian yang bisa saya bantu temukan solusinya?
+                </div>
+            </div>
+
+            <div class="p-2 border-t-2 border-black bg-white flex flex-wrap gap-1">
+                <button onclick="clickQuickPrompt('Kenapa KRS saya bertanda ditolak?')" class="text-[9px] font-bold bg-gray-100 hover:bg-gray-200 border border-black px-1.5 py-0.5">[KRS DITOLAK?]</button>
+                <button onclick="clickQuickPrompt('Berapa jatah SKS maksimal saya semester ini?')" class="text-[9px] font-bold bg-gray-100 hover:bg-gray-200 border border-black px-1.5 py-0.5">[CEK BATAS SKS]</button>
+            </div>
+
+            <form onsubmit="handleChatSubmit(event)" class="border-t-2 border-black flex bg-white">
+                <input type="text" id="chatInputField" placeholder="Ketik kendala sistem akademik disini..." class="w-full px-2 py-2 text-xs font-bold focus:bg-gray-50 outline-none">
+                <button type="submit" class="bg-black text-white px-4 text-xs font-bold hover:bg-gray-800 border-l border-black">KIRIM</button>
+            </form>
+        </div>
+
+    </div>
+
+
+    <script>
+        // 1. Logika Pengalihan Tab Navigasi Menu Sidebar
+        function switchTab(tabId) {
+            document.getElementById('tab-dashboard').classList.add('hidden');
+            document.getElementById('tab-krs').classList.add('hidden');
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+
+            const btnDashboard = document.getElementById('nav-dashboard');
+            const btnKrs = document.getElementById('nav-krs');
+
+            // Setel ulang gaya visual tombol menu
+            btnDashboard.className = "w-full text-left flex items-center space-x-3 px-3 py-2 border-2 border-transparent hover:border-black font-bold text-gray-600 hover:text-black transition-all";
+            btnKrs.className = "w-full text-left flex items-center space-x-3 px-3 py-2 border-2 border-transparent hover:border-black font-bold text-gray-600 hover:text-black transition-all";
+
+            // Pasang gaya visual tombol aktif
+            if(tabId === 'dashboard') {
+                btnDashboard.className = "w-full text-left flex items-center space-x-3 px-3 py-2 border-2 border-black bg-gray-200 font-bold transition-all";
+            } else if(tabId === 'krs') {
+                btnKrs.className = "w-full text-left flex items-center space-x-3 px-3 py-2 border-2 border-black bg-gray-200 font-bold transition-all";
+            }
+        }
+
+        // 2. Kalkulasi Jumlah Hitungan SKS Secara Real-Time
+        function calculateSks() {
+            const checkboxes = document.querySelectorAll('.krs-checkbox');
+            let totalSks = 0;
+
+            checkboxes.forEach(box => {
+                if(box.checked) {
+                    totalSks += parseInt(box.getAttribute('data-sks'));
+                }
+            });
+
+            // Perbarui label status di form krs dan di widget dashboard
+            document.getElementById('currentSksLabel').innerText = totalSks;
+            document.getElementById('dashSksLabel').innerText = `${totalSks} / 24`;
+        }
+
+        // 3. Tombol Ambil Semua Paket Rekomendasi Otomatis (AI Automation Simulation)
+        function autoSelectKrs() {
+            const checkboxes = document.querySelectorAll('.krs-checkbox');
+            checkboxes.forEach((box, index) => {
+                // Mensimulasikan memilih 3 matakuliah pertama agar tidak melebihi kuota/bentrok
+                if(index < 3) box.checked = true;
+                else box.checked = false;
+            });
+            calculateSks();
+            alert("Sistem Cerdas berhasil mencentangkan paket rekomendasi non-bentrok kelas Informatika 9!");
+        }
+
+        // 4. Reset Semua Pilihan Checkbox KRS
+        function resetKrsSelection() {
+            const checkboxes = document.querySelectorAll('.krs-checkbox');
+            checkboxes.forEach(box => box.checked = false);
+            calculateSks();
+        }
+
+        // 5. Submit Form Isian KRS
+        function submitKrsForm() {
+            const currentSks = parseInt(document.getElementById('currentSksLabel').innerText);
+            if(currentSks === 0) {
+                alert("Kesalahan: Anda belum memilih mata kuliah satu pun di lembar draf krs!");
+                return;
+            }
+            alert(`Sukses! Draf berisi ${currentSks} SKS berhasil diajukan ke Ir. Teuku Muda, M.T. untuk divalidasi.`);
+        }
+
+        // 6. Menyaring / Memfilter Matakuliah Berdasarkan Input Text Pengguna (KRS Search Filter)
+        function filterKrsItems() {
+            const keyword = document.getElementById('krsSearchField').value.toLowerCase();
+            const items = document.querySelectorAll('.krs-item');
+
+            items.forEach(item => {
+                const title = item.querySelector('.matkul-title').innerText.toLowerCase();
+                if(title.includes(keyword)) {
+                    item.style.display = "flex";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+
+        // 7. Input Pencarian Global Pada Topbar Navigasi Header
+        function handleTopSearch() {
+            const val = document.getElementById('topSearchInput').value.toLowerCase();
+            if(val === 'krs') {
+                switchTab('krs');
+            } else if(val === 'dashboard' || val === 'beranda' || val === 'utama') {
+                switchTab('dashboard');
+            }
+        }
+
+        // 8. Manajemen Kendali Jendela Bantuan Cerdas AI Chatbot
+        function openAiWidget() { document.getElementById('aiWidget').classList.remove('hidden'); }
+        function closeAiWidget() { document.getElementById('aiWidget').classList.add('hidden'); }
+
+        // Tangani aksi submit teks di form chatbot
+        function handleChatSubmit(e) {
+            e.preventDefault();
+            const inputField = document.getElementById('chatInputField');
+            const text = inputField.value.trim();
+            if(!text) return;
+
+            appendChatBubble(text, 'user');
+            respondAsAI(text);
+            inputField.value = '';
+        }
+
+        // Tangani klik tombol instruksi instan kustom
+        function clickQuickPrompt(promptText) {
+            appendChatBubble(promptText, 'user');
+            respondAsAI(promptText);
+        }
+
+        // Masukkan balon chat baru ke dalam kontainer percakapan
+        function appendChatBubble(text, sender) {
+            const chatBox = document.getElementById('chatBox');
+            const bubble = document.createElement('div');
+
+            if(sender === 'user') {
+                bubble.className = "bg-gray-200 border-2 border-black p-2 max-w-[85%] self-end font-bold";
+            } else {
+                bubble.className = "bg-white border border-black p-2 max-w-[85%] self-start";
+            }
+
+            bubble.innerHTML = text;
+            chatBox.appendChild(bubble);
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll ke terbawah
+        }
+
+        // Simulasi balasan cerdas terkonteks dari chatbot AI
+        function respondAsAI(userQuery) {
+            setTimeout(() => {
+                let replyText = "Pertanyaan draf kasaran Anda diterima. Gunakan menu navigasi utama untuk pengerjaan lanjutan perwalian.";
+
+                if(userQuery.toLowerCase().includes('tolak')) {
+                    replyText = `<strong>[DIAGNOSIS REKOMENDASI AI]:</strong><br>KRS Anda ditolak akibat penumpukan jadwal kelas bentrok pada hari Kamis.<br><br>
+                    <button onclick="switchTab('krs'); closeAiWidget();" class="w-full bg-black text-white py-1 font-bold text-[10px] text-center border border-black hover:bg-gray-800">[ REVISI PILIHAN KELAS ]</button>`;
+                } else if(userQuery.toLowerCase().includes('sks') || userQuery.toLowerCase().includes('batas')) {
+                    replyText = "Sistem membaca raihan nilai IPK Anda sebesar <strong>3.85</strong>. Jatah beban maksimal pengambilan semester ini adalah <strong>24 SKS</strong>.";
+                }
+
+                appendChatBubble(replyText, 'ai');
+            }, 400);
+        }
+
+        // 9. Aksesibilitas Panel: Pengubah Ukuran Fontasi Global Dokumen (WCAG Inklusivitas)
+        function changeFontSize(sizeClass) {
+            const container = document.getElementById('mainApp');
+            container.classList.remove('text-xs', 'text-sm', 'text-base');
+            container.classList.add(sizeClass);
+        }
+    </script>
+</body>
+</html>
